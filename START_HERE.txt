@@ -1,0 +1,10 @@
+RİMA SAYT PAKETİ — BAŞLANĞIC
+
+1. Sayta baxmaq üçün index.html faylını açın.
+2. Müraciətlərin e-mailə gəlməsi üçün config.js faylında:
+   contactEmail: "email@example.com"
+   hissəsini öz e-mail ünvanınızla dəyişin.
+3. Instagram və LinkedIn linklərini eyni config.js faylında dəyişin.
+4. Təlimçi şəklini assets/mentor-placeholder.svg faylı ilə əvəz edin.
+5. Qiymətlər index.html daxilində 390, 690 və 990 kimi qeyd olunub.
+6. GitHub Pages üçün bütün faylları rimaacademy.github.io repository-sinin kökünə yükləyin.

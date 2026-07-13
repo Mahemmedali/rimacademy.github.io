@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rimaacademy.github.io/sitemap.xml

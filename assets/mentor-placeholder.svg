@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="t d">
+<title id="t">RİMA mentor placeholder</title><desc id="d">Bənövşəyi və narıncı kollaj üslubunda abstrakt insan portreti</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151515"/><stop offset=".55" stop-color="#34258f"/><stop offset="1" stop-color="#ff6500"/></linearGradient>
+  <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
+  <filter id="noise"><feTurbulence baseFrequency=".8" numOctaves="3"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .12 0"/></filter>
+</defs>
+<rect width="900" height="1200" fill="url(#bg)"/><rect width="900" height="1200" fill="url(#grid)"/>
+<path d="M132 1090c18-280 122-409 318-409s300 129 318 409" fill="#171717" stroke="#fffdf7" stroke-width="10"/>
+<ellipse cx="450" cy="450" rx="205" ry="258" fill="#d7d2c8" stroke="#151515" stroke-width="12"/>
+<path d="M240 412c20-202 132-297 268-274 105 18 179 91 190 233-85-67-193-88-305-37-51 24-101 51-153 78Z" fill="#151515"/>
+<rect x="232" y="430" width="195" height="88" rx="21" fill="#151515"/><rect x="473" y="430" width="195" height="88" rx="21" fill="#151515"/>
+<path d="M427 461h46" stroke="#151515" stroke-width="14"/>
+<path d="M285 462h92M522 462h92" stroke="#fffdf7" stroke-width="11" stroke-dasharray="19 13"/>
+<path d="M385 610c44 31 90 31 134 0" fill="none" stroke="#151515" stroke-width="12" stroke-linecap="round"/>
+<circle cx="143" cy="227" r="75" fill="#c7ef1e" stroke="#151515" stroke-width="10"/><text x="143" y="247" text-anchor="middle" font-family="Georgia,serif" font-size="64" font-style="italic">R</text>
+<path d="M680 180c90-80 176-46 141 38-33 81-134 82-190 11" fill="none" stroke="#f19ab0" stroke-width="18" stroke-linecap="round"/>
+<path d="M90 795h257l-35 112H70Z" fill="#ff6500" stroke="#151515" stroke-width="9"/><text x="204" y="858" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="900">TƏLİMÇİ FOTO</text>
+<g fill="#fffdf7"><circle cx="731" cy="690" r="8"/><circle cx="772" cy="690" r="8"/><circle cx="813" cy="690" r="8"/></g>
+<rect width="900" height="1200" filter="url(#noise)" opacity=".38"/>
+</svg>
