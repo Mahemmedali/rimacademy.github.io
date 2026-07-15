@@ -62,50 +62,87 @@ courseButtons.forEach((button) => {
 
 // Registration form. Default mode opens the visitor's e-mail application.
 // config.js daxilində contactEmail sahəsini dəyişməklə müraciətlər real ünvana yönləndirilir.
+// Registration form -> Formspree
 const registrationForm = document.querySelector('#registration-form');
 const formMessage = document.querySelector('#form-message');
+const submitButton = registrationForm?.querySelector('.submit-btn');
 
-registrationForm?.addEventListener('submit', (event) => {
+registrationForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
+
   formMessage?.classList.remove('is-success', 'is-error');
 
   if (!registrationForm.checkValidity()) {
     registrationForm.reportValidity();
+
     if (formMessage) {
-      formMessage.textContent = 'Zəhmət olmasa bütün məcburi xanaları düzgün doldurun.';
+      formMessage.textContent =
+        'Zəhmət olmasa bütün məcburi xanaları düzgün doldurun.';
       formMessage.classList.add('is-error');
     }
+
     return;
   }
 
-  const data = new FormData(registrationForm);
-  const config = window.RIMA_CONFIG || {};
-  const recipient = String(config.contactEmail || '').trim();
-  const subject = String(config.formSubject || 'RİMA — Yeni kurs müraciəti');
-  const body = [
-    'RİMA saytından yeni müraciət',
-    '',
-    `Proqram: ${data.get('course')}`,
-    `Ad və soyad: ${data.get('name')}`,
-    `E-mail: ${data.get('email')}`,
-    `Telefon: ${data.get('phone')}`,
-    `Təhsil səviyyəsi: ${data.get('education')}`
-  ].join('\n');
+  const formData = new FormData(registrationForm);
+  const originalButtonContent = submitButton?.innerHTML;
 
-  if (!recipient || recipient === 'email@example.com') {
-    navigator.clipboard?.writeText(body).catch(() => {});
+  formData.append('_subject', 'RİMA — Yeni kurs müraciəti');
+  formData.append('_replyto', formData.get('email'));
+
+  try {
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML =
+        'Göndərilir... <span aria-hidden="true">↗</span>';
+    }
+
     if (formMessage) {
-      formMessage.textContent = 'Forma işləyir. Real müraciətlər üçün config.js faylında contactEmail ünvanını dəyişin. Məlumatlar mübadilə buferinə köçürüldü.';
+      formMessage.textContent = 'Müraciətiniz göndərilir...';
+    }
+
+    const response = await fetch(registrationForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Form göndərilmədi');
+    }
+
+    if (formMessage) {
+      formMessage.textContent =
+        'Müraciətiniz uğurla göndərildi. Tezliklə sizinlə əlaqə saxlanılacaq.';
       formMessage.classList.add('is-success');
     }
-    return;
-  }
 
-  const mailto = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
-  if (formMessage) {
-    formMessage.textContent = 'E-mail tətbiqiniz açılır. Müraciəti göndərmək üçün Send düyməsini sıxın.';
-    formMessage.classList.add('is-success');
+    registrationForm.reset();
+
+    if (selectedCourseInput) {
+      selectedCourseInput.value = 'RİMA Full Academy';
+    }
+
+    if (selectedCourseName) {
+      selectedCourseName.textContent = 'RİMA Full Academy';
+    }
+  } catch (error) {
+    console.error(error);
+
+    if (formMessage) {
+      formMessage.textContent =
+        'Müraciət göndərilmədi. Zəhmət olmasa yenidən cəhd edin.';
+      formMessage.classList.add('is-error');
+    }
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML =
+        originalButtonContent ||
+        'Müraciəti göndər <span aria-hidden="true">↗</span>';
+    }
   }
 });
 
